@@ -1,4 +1,4 @@
-import 'package:functional_rx_bloc/modules/middleware/auth/auth_middleware.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/mock_auth_middleware.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -2,7 +2,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:functional_rx_bloc/modules/middleware/auth/auth_middleware.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/auth_event.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/auth_state.dart';
 import 'package:functional_rx_bloc/view/bloc/auth/auth_bloc.dart';
@@ -23,7 +23,7 @@ class _EntryState extends State<Entry> {
   @override
   void initState() {
     super.initState();
-    _init = di.init();
+    _init = di.init().then((_) => _/*もし時間のかかる初期化のmiddlewareがあるなかここでdi.sl.initMiddleware.init()を呼び出す*/);
   }
 
   @override
@@ -40,11 +40,10 @@ class _EntryState extends State<Entry> {
         body: FutureBuilder<bool>(
           future: _init,
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
+            if (snapshot.connectionState == ConnectionState.done) {
               return MultiBlocProvider(
                 providers: [
                   // register BloCs here.
-                  // AuthBloc(UnAuthorized(),GetIt<usecase>())..init()
                   BlocProvider(
                       create: (context) => AuthBloc(UnAuthorized(),
                           middleware: di.sl.get<AuthMiddleware>())
