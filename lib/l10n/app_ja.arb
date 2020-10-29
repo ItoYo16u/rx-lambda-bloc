@@ -1,0 +1,363 @@
+{
+  "@@locale": "ja",
+  "appTitle": "",
+  "@appTitle": {
+    "description": "app title"
+  },
+  "appVersion": "バージョン",
+  "@appVersion": {
+    "description": "app version"
+  },
+  "appLicense": "ライセンス",
+  "@appLicense": {
+    "description": "app license"
+  },
+  "labelOk": "OK!",
+  "@labelOk": {
+    "description": "label for Ok buttons and actions"
+  },
+  "labelSearch": "検索する",
+  "@labelSearch": {
+    "description": "label for Search buttons and actions"
+  },
+  "labelAvailable": "",
+  "@labelAvailable": {
+    "description": "label for available contents"
+  },
+  "labelEmpty": "",
+  "@labelEmpty": {
+    "description": "label for empty"
+  },
+  "labelUnknown": "不明",
+  "@labelUnknown": {
+    "description": "label for unknown"
+  },
+  "labelLocked": "",
+  "@labelLocked": {
+    "description": "label for locked contents"
+  },
+  "labelAgree": "同意する",
+  "@labelAgree": {
+    "description": "label for agree buttons and actions"
+  },
+  "labelAdd": "追加する",
+  "@labelAdd": {
+    "description": "label for add buttons and actions"
+  },
+  "labelAccept": "同意する",
+  "@labelAccept": {
+    "description": "label for accept buttons and actions"
+  },
+  "labelApply": "申し込む",
+  "@labelApply": {
+    "description": "label for apply buttons and actions"
+  },
+  "labelConfirm": "確認しました",
+  "@labelConfirm": {
+    "description": "label for confirm buttons and actions"
+  },
+  "labelStart": "開始する",
+  "@labelStart": {
+    "description": "label for start buttons and actions"
+  },
+  "labelSubmit": "送信する",
+  "@labelSubmit": {
+    "description": "label for submit buttons and actions"
+  },
+  "labelUpdate": "更新する",
+  "@labelUpdate": {
+    "description": "label for submit buttons and actions"
+  },
+  "labelFix": "修正する",
+  "@labelFix": {
+    "description": "label for submit buttons and actions"
+  },
+  "labelSave": "保存する",
+  "@labelSave": {
+    "description": "label for save buttons and actions"
+  },
+  "labelCancel": "キャンセルする",
+  "@labelCancel": {
+    "description": "label for cancel buttons and actions"
+  },
+  "labelUnapply": "申し込みを取り消す",
+  "@labelUnapply": {
+    "description": "label for unapply buttons and actions"
+  },
+  "labelStop": "停止する",
+  "@labelStop": {
+    "description": "label for stop buttons and actions"
+  },
+  "labelDelete": "削除する",
+  "@labelDelete": {
+    "description": "label for delete buttons and actions"
+  },
+  "labelDetail": "詳細",
+  "@labelDetail": {
+    "description": "label for detail buttons and actions"
+  },
+  "labelHelp": "ヘルプ",
+  "@labelHelp": {
+    "description": "label for help buttons and actions"
+  },
+  "labelForward": "進む",
+  "@labelForward": {
+    "description": "label for forward buttons and actions"
+  },
+  "labelBack": "戻る",
+  "@labelBack": {
+    "description": "label for back buttons and actions"
+  },
+  "labelNext": "次へ",
+  "@labelNext": {
+    "description": "label for next buttons and actions"
+  },
+  "labelPrev": "前へ",
+  "@labelPrev": {
+    "description": "label for prev buttons and actions"
+  },
+  "labelNews": "新着",
+  "@labelNews": {
+    "description": "label for news"
+  },
+  "labelOther": "その他",
+  "@labelOther": {
+    "description": "label for other buttons and actions"
+  },
+  "labelSignUp": "新規会員登録",
+  "@labelSignUp": {
+    "description": "label for sign up buttons and actions"
+  },
+  "labelSignIn": "ログイン",
+  "@labelSignIn": {
+    "description": "label for sign in buttons and actions"
+  },
+  "labelVerifyPhoneNUmber": "電話番号認証を行う",
+  "@labelVerifyPhoneNUmber": {
+    "description": "label for verify phone number buttons and actions"
+  },
+  "labelForgetPassword": "パスワードを忘れた方はこちら",
+  "@labelForgetPassword": {
+    "description": "label for reset password buttons and actions"
+  },
+  "labelSignOut": "ログアウトする",
+  "@labelSignOut": {
+    "description": "label for sign out buttons and actions"
+  },
+  "labelDestroyAccount": "退会する",
+  "@labelDestroyAccount": {
+    "description": "label for destroy account buttons and actions"
+  },
+  "labelFollow": "フォローする",
+  "@labelFollow": {
+    "description": "label for follow buttons and actions"
+  },
+  "labelUnfollow": "フォローを解除する",
+  "@labelUnfollow": {
+    "description": "label for unfollow buttons and actions"
+  },
+  "labelUnfollowShort": "フォロー解除",
+  "@labelUnfollowShort": {
+    "description": "label for unfollow buttons and actions"
+  },
+  "labelOptional": "任意",
+  "@labelOptional": {
+    "description": "label for optional field"
+  },
+  "labelRequired": "必須",
+  "@labelRequired": {
+    "description": "label for required field"
+  },
+  "labelEmail": "メールアドレス",
+  "@labelEmail": {
+    "description": "label for mail address field"
+  },
+  "placeholderEmail": "test@example.com",
+  "@placeholderEmail": {
+    "description": "placeholder for mail address field"
+  },
+  "labelCurrentEmail": "現在のメールアドレス",
+  "@labelCurrentEmail": {
+    "description": "label for current email address field"
+  },
+  "labelNewEmail": "新しいメールアドレス",
+  "@labelNewEmail": {
+    "description": "label for new email address field"
+  },
+  "labelPassword": "パスワード",
+  "@labelPassword": {
+    "description": "label for password field"
+  },
+  "placeholderPassword": "••••••••••",
+  "@placeholderPassword": {
+    "description": "placeholder for password field"
+  },
+  "labelCurrentPassword": "現在のパスワード",
+  "@labelCurrentPassword": {
+    "description": "label for current password field"
+  },
+  "labelNewPassword": "新しいパスワード",
+  "@labelNewPassword": {
+    "description": "label for new password field"
+  },
+  "labelName": "氏名",
+  "@labelName": {
+    "description": "label for name"
+  },
+  "labelFamilyName": "姓",
+  "@labelFamilyName": {
+    "description": "label for family name"
+  },
+  "placeholderFamilyName": "佐藤",
+  "@placeholderFamilyName": {
+    "description": "placeholder for family name"
+  },
+  "labelGivenName": "名",
+  "@labelGivenName": {
+    "description": "label for given name"
+  },
+  "placeholderGivenName": "太郎",
+  "@placeholderGivenName": {
+    "description": "given for family name"
+  },
+  "labelAddress": "住所",
+  "@labelAddress": {
+    "description": "label for address"
+  },
+  "labelPhoneNumber": "電話番号",
+  "@labelPhoneNumber": {
+    "description": "label for phone number"
+  },
+  "labelFollowings": "フォロー中",
+  "@labelFollowings": {
+    "description": "label for followings"
+  },
+  "labelInquiry": "お問い合わせ",
+  "@labelInquiry": {
+    "description": "label for phone number"
+  },
+  "labelTermOfUse": "利用規約",
+  "@labelTermOfUse": {
+    "description": "label for term of use"
+  },
+  "labelHowToUse": "アプリの使い方",
+  "@labelHowToUse": {
+    "description": "label for how to use"
+  },
+  "labelPrivacyPolicy": "プライバシーポリシー",
+  "@labelPrivacyPolicy": {
+    "description": "label for privacy policy"
+  },
+  "navTop": "トップページ",
+  "@navTop": {
+    "description": "navigation to top page"
+  },
+  "navSignUp": "新規会員登録はこちら",
+  "@navSignUp": {
+    "description": "navigation to sign up page"
+  },
+  "navSignIn": "ログインはこちら",
+  "@navSignIn": {
+    "description": "navigation to sign in page"
+  },
+  "navResetPassword": "パスワードを忘れた方はこちら",
+  "@navResetPassword": {
+    "description": "navigation to password reset page"
+  },
+  "navNotification": "通知",
+  "@navNotification": {
+    "description": "navigation to notification page"
+  },
+  "navMenu": "メニュー",
+  "@navMenu": {
+    "description": "navigation to menu page"
+  },
+  "navSetting": "設定",
+  "@navSetting": {
+    "description": "navigation to setting page"
+  },
+  "navAccountSetting": "アカウント設定",
+  "@navAccountSetting": {
+    "description": "navigation to account setting page"
+  },
+  "feedbackLoading": "しばらくおまちください",
+  "@feedbackLoading": {
+    "description": "feedback while loading"
+  },
+  "feedbackDone": "完了しました",
+  "@feedbackDone": {
+    "description": "feedback when done"
+  },
+  "feedbackSuccess": "成功しました",
+  "@feedbackSuccess": {
+    "description": "feedback when success"
+  },
+  "feedbackNotFound": "見つかりませんでした",
+  "@feedbackNotFound": {
+    "description": "feedback when not found"
+  },
+  "feedbackError": "失敗しました",
+  "@feedbackError": {
+    "description": "feedback when error"
+  },
+  "feedbackSuccessUpdate": "更新に成功しました",
+  "@feedbackSuccessUpdate": {
+    "description": "feedback when something is successfully updated"
+  },
+  "feedbackErrorUpdate": "更新に失敗しました",
+  "@feedbackErrorUpdate": {
+    "description": "feedback when something went wrong while updating something"
+  },
+  "feedbackSuccessCancel": "キャンセルに成功しました",
+  "@feedbackSuccessCancel": {
+    "description": "feedback when something is successfully canceled"
+  },
+  "feedbackErrorCancel": "キャンセルに失敗しました",
+  "@feedbackErrorCancel": {
+    "description": "feedback when something went wrong while canceling something"
+  },
+  "validationInvalidEmail": "メールアドレスの形式が正しくありません",
+  "@validationInvalidEmail": {
+    "description": "message shown when email is invalid"
+  },
+  "validationEmptyEmail": "メールアドレスを入力してください",
+  "@validationEmptyEmail": {
+    "description": "message shown when email is empty"
+  },
+  "validationInvalidPassword": "パスワードの形式が正しくありません",
+  "@validationInvalidPassword": {
+    "description": "message shown when password is invalid"
+  },
+  "validationEmptyPassword": "パスワードを入力してください",
+  "@validationEmptyPassword": {
+    "description": "message shown when password is empty"
+  },
+  "validationWeakPassword": "パスワードが短すぎます",
+  "@validationWeakPassword": {
+    "description": "message shown when password is too short"
+  },
+  "confirmCancel": "キャンセルしますか",
+  "@confirmCancel": {
+    "description": "confirm message when user tries to cancel something"
+  },
+  "confirmDelete": "削除しますか",
+  "@confirmDelete": {
+    "description": "confirm message when user tries to delete something"
+  },
+  "confirmLogout": "ログアウトしますか",
+  "@confirmLogout": {
+    "description": "confirm message when user tries to logout"
+  },
+  "confirmDestroyAccount": "退会しますか",
+  "@confirmDestroyAccount": {
+    "description": "confirm message when user tries to destroy account"
+  },
+  "confirmDeleteAccount": "本当に退会してよろしいですか？\nアカウントは削除され、アカウントに基づくデータも削除されます。",
+  "@confirmDeleteAccount": {
+    "description": "another confirm message when user tries to destroy account"
+  },
+  "guideDeleteAccount": "アカウントを削除します。\n全てのデータは削除されます。",
+  "@guideDeleteAccount": {
+    "description": "guide meessage for delete account"
+  }
+}
