@@ -8,7 +8,6 @@ import 'package:functional_rx_bloc/modules/middleware/common/error/failures.dart
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthMiddleware _authMiddleware;
 
-  // todo require middleware
   AuthBloc(AuthState initialState, {AuthMiddleware middleware})
       : _authMiddleware = middleware,
         super(initialState);
@@ -33,23 +32,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         yield Error(message: 'err:wrong email or password');
       }, (params) async* {
         yield Pending();
-        // final failureOrToken = await _authMiddleware.signIn(params);
-        // yield* _eitherSuccessOrError(failureOrToken);
-        final isAuthenticated = params.email == 'test@example.com' &&
-            params.password == 'password12345';
-        yield isAuthenticated
-            ? Authorized(token: "token")
-            : UnAuthorized(message: 'wrong email or password');
+        final failureOrToken = await _authMiddleware.signIn(params);
+        yield* _eitherSuccessOrError(failureOrToken);
       });
     } else if (event is SignOut) {
       yield* event.validate().fold((failure) async* {
         yield Error(message: 'wrong email or password');
       }, (params) async* {
         yield Pending();
-        await Future<void>.delayed(const Duration(seconds: 1));
-        //final failureOrUnit = await _authMiddleware.signOut(params);
-        //yield* _eitherSignOutOrError(failureOrUnit);
-        yield UnAuthorized();
+        final failureOrUnit = await _authMiddleware.signOut(params);
+        yield* _eitherSignOutOrError(failureOrUnit);
       });
     } else if (event is SignInWithToken) {
       yield* event.validate().fold((failure) async* {
@@ -57,7 +49,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }, (params) async* {
         yield Pending();
         //final failureOrToken =  _authMiddleware.tryAutoSignIn(); => repo.retrieveToken.then signInWithToken(token)
-        await Future<void>.delayed(const Duration(seconds: 1));
         // unauthorized or authorized or err
         yield UnAuthorized(message: 'token expired');
       });

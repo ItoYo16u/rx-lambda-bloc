@@ -8,6 +8,6 @@ abstract class AuthMiddleware {
   Future<Either<Failure,String>> signIn(SignInParams params);
   /// ulid 、アカウントオブジェクトの生成、repositoryで永続化、レスポンス処理
   Future<Either<Failure,String>> signUp(SignUpParams params);
-  Future<Either<Failure,void>> signOut(SignOutParams params);
+  Future<Either<Failure,Unit>> signOut(SignOutParams params);
   Future<Either<Failure,void>> deleteAccount(DeleteAccountParams params);
 }

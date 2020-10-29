@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:functional_rx_bloc/modules/middleware/auth/protocol/auth_event.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/auth_state.dart';
 import 'package:functional_rx_bloc/view/bloc/auth/auth_bloc.dart';
-import 'package:provider/provider.dart';
 
 class AuthWidget extends StatelessWidget {
   const AuthWidget({@required this.privateApp, @required this.redirect});
@@ -16,7 +14,6 @@ class AuthWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // try auto login;
-    Provider.of<AuthBloc>(context).add(SignInWithToken());
     return BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
       if (state is UnAuthorized) {
         return redirect(context: context, message: state.message);

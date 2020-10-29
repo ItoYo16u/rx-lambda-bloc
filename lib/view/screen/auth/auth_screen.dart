@@ -27,12 +27,12 @@ class AuthScreen extends StatelessWidget {
                         //onChanged: Provider.of<AuthValidationBloc>(context).add(MaybeSignInParams(email,password)),
                         controller: viewmodel.emailController),
                     PasswordField(
-                        //onChanged: Provider.of<AuthValidationBloc>(context).add(maybeSignInParams(email,password)),
+                        //onChanged: Provider.of<AuthValidationBloc>(context).add(MaybeSignInParams(email,password)),
                         controller: viewmodel.passwordController,
                         formKey: GlobalKey()),
                     RaisedButton(
                         child: Text(AppLocalizations.of(context).labelSignIn),
-                        // state.canSubmit ? : null;
+                        // validateState.canSubmit ? : null;
                         onPressed: () =>
                             Provider.of<AuthBloc>(context, listen: false).add(
                                 SignIn(
