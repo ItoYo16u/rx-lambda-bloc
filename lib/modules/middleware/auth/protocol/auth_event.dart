@@ -34,10 +34,8 @@ class SignIn extends AuthEvent {
   @override
   Either<Failure, SignInParams> validate() {
     try {
-      if (email == null || password == null) throw const FormatException('email and password must not be null!');
-      if(password.length < 5) throw const FormatException('password must be eq or longer than 5');
       return Right(SignInParams(email: email, password: password));
-    } on FormatException catch(e){
+    } on FormatException catch (e) {
       return Left(InvalidInputFailure(message: e.message));
     }
   }
@@ -58,7 +56,7 @@ class SignUp extends AuthEvent {
   Either<Failure, SignUpParams> validate() {
     try {
       final result =
-          SignUpParams(email: email, password: password, username: username);
+      SignUpParams(email: email, password: password, username: username);
       return Right(result);
     } on FormatException {
       return Left(InvalidInputFailure());
@@ -91,5 +89,6 @@ class DeleteAccount extends AuthEvent {
 
 class InvalidInputFailure extends Failure {
   InvalidInputFailure({this.message});
+
   final String message;
 }

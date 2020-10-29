@@ -28,6 +28,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         },
       );
     } else if (event is SignIn) {
+      // validationで弾かれた場合はusecase/middleware層に入らずにリターンする
+      //
+      //     validation
+      //   ------o--> success --> usecase/middleware -o--> result
+      //          \                                 /
+      //           \--> error ---------------------/
       yield* event.validate().fold((failure) async* {
         if(failure is InvalidInputFailure) {
           yield Error(message: failure.message??'something went wrong');
