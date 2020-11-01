@@ -5,6 +5,7 @@ import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middle
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_auth_state.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_authentication_event.dart';
 import 'package:functional_rx_bloc/modules/middleware/common/error/failures.dart';
+
 class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
   final AuthMiddleware _authMiddleware;
 
@@ -35,9 +36,9 @@ class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
       //          \                                 /
       //           \--> error ---------------------/
       yield* event.validate().fold((failure) async* {
-        if(failure is InvalidInputFailure) {
-          yield Error(message: failure.message??'something went wrong');
-        }else {
+        if (failure is InvalidInputFailure) {
+          yield Error(message: failure.message ?? 'something went wrong');
+        } else {
           yield Error(message: 'something went wrong');
         }
       }, (params) async* {
@@ -50,7 +51,7 @@ class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
         yield Error(message: '');
       }, (params) async* {
         yield Pending();
-        await Future<void>.delayed(const Duration(seconds: 3));
+        await Future<void>.delayed(const Duration(seconds: 1));
         //final failureOrToken =  _authMiddleware.tryAutoSignIn(); => repo.retrieveToken.then signInWithToken(token)
         // unauthorized or authorized or err
         yield Ready(message: 'token expired');
@@ -68,16 +69,12 @@ class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
   }
 
   String _mapFailureToMessage(Failure failure) {
-    switch (failure.runtimeType) {
-    // ここで特定のfailureに関してはfailure.messageを取得してもよさそう.
-      case ServerFailure:
-        return 'server error';
-      case CacheFailure:
-        return 'cache error';
-      case SignInFailure:
-        return 'failed to sign in.';
-      default:
-        return 'Unexpected error';
+    if (failure is ServerFailure) {
+      return 'サーバーエラーが発生しました';
+    } else if (failure is SignInFailure) {
+      return failure.message;
+    } else {
+      return '予期せぬエラーが発生しました.';
     }
   }
 }

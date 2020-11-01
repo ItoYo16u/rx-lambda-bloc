@@ -15,31 +15,37 @@ class AuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-          create: (context) => AuthViewModel(),
-          builder: (context, child) => Consumer<AuthViewModel>(
-                // wrap with authValidationBloc
-                builder: (context, viewmodel, child) => Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (message != null) ...[Text(message)],
-                    EmailField(
-                        //onChanged: Provider.of<AuthValidationBloc>(context).add(MaybeSignInParams(email,password)),
-                        controller: viewmodel.emailController),
-                    PasswordField(
-                        //onChanged: Provider.of<AuthValidationBloc>(context).add(MaybeSignInParams(email,password)),
-                        controller: viewmodel.passwordController,
-                        formKey: GlobalKey()),
-                    RaisedButton(
-                        child: Text(AppLocalizations.of(context).labelSignIn),
-                        // validateState.canSubmit ? : null;
-                        onPressed: () =>
-                            Provider.of<TryAuthBloc>(context, listen: false).add(
-                                SignIn(
-                                    email: viewmodel.email,
-                                    password: viewmodel.password)))
-                  ],
-                ),
+      create: (context) => AuthViewModel(),
+      builder: (context, child) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (message != null) ...[Text(message)],
+            Consumer<AuthViewModel>(
+              builder: (_,vm,__)=> EmailField(
+                  errorText: vm.emailErrorText,
+                  controller: vm.emailController),
+            ),
+            Consumer<AuthViewModel>(
+              builder: (_,vm,__)=> PasswordField(
+                  errorText: vm.passwordErrorText,
+                  controller: vm.passwordController,
+                  formKey: Key('password')
               ),
+            ),
+            Consumer<AuthViewModel>(
+              builder: (_,vm,__)=>  RaisedButton(
+                  key: GlobalKey(),
+                  child: Text(AppLocalizations.of(context).labelSignIn,key: GlobalKey(),),
+                  // validateState.canSubmit ? : null;
+                  onPressed: vm.canSubmit()
+                      ? () => Provider.of<TryAuthBloc>(context, listen: false)
+                      .add(SignIn(
+                      email: vm.email,
+                      password: vm.password))
+                      : null)
+            ),
+          ],
+        ),
     );
   }
 }

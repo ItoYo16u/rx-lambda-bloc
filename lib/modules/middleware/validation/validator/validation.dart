@@ -24,7 +24,7 @@ extension ValidationString on String {
       ._hasNumber(errorMessage: ValidationConstants.atLeastOneNumberRequired);
 
   Either<FormatException, String> isEmail() => _toValidatable()
-      ._isNotEmpty(errorMessage: ValidationConstants.passwordEmpty)
+      ._isNotEmpty(errorMessage: ValidationConstants.mustNotBeEmpty)
       ._matchRgx(_emailRegExp,
           errorMessage: ValidationConstants.emailInvalidFormat);
 
@@ -39,6 +39,10 @@ extension ValidationString on String {
 }
 
 extension ValidationEitherExt on Either<FormatException, String> {
+  bool isValid() => isRight();
+
+  String validate() => swap().map((r) => r.message).getOrElse(() => null);
+
   Either<FormatException, String> _isNotEmpty({@required String errorMessage}) {
     try {
       return map((r) {
