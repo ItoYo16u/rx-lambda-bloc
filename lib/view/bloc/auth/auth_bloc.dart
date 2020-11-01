@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/auth_error.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/auth_event.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/auth_state.dart';
@@ -85,10 +86,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   String _mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
+    // ここで特定のfailureに関してはfailure.messageを取得してもよさそう.
       case ServerFailure:
         return 'server error';
       case CacheFailure:
         return 'cache error';
+      case SignInFailure:
+        return 'failed to sign in.';
       default:
         return 'Unexpected error';
     }

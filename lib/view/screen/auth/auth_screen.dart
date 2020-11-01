@@ -22,7 +22,7 @@ class AuthScreen extends StatelessWidget {
                 builder: (context, viewmodel, child) => Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if(message !=null) ...[Text(message)],
+                    if (message != null) ...[Text(message)],
                     EmailField(
                         //onChanged: Provider.of<AuthValidationBloc>(context).add(MaybeSignInParams(email,password)),
                         controller: viewmodel.emailController),

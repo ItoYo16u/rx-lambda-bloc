@@ -30,6 +30,7 @@ class PasswordField extends StatelessWidget {
               child: TextField(
                 key: formKey,
                 onChanged: onChanged,
+                autofocus: false,
                 autofillHints: const [AutofillHints.password],
                 obscureText: viewModel.textHidden,
                 controller: viewModel.controller,

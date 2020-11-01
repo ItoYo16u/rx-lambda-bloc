@@ -25,6 +25,7 @@ class EmailField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      autofocus: false,
       onChanged: onChanged,
       controller: controller,
       autofillHints: const [AutofillHints.email],

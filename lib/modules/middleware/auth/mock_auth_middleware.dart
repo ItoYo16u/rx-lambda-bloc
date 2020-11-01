@@ -15,7 +15,7 @@ class MockAuthMiddleware implements AuthMiddleware {
   Future<Either<Failure, String>> signIn(SignInParams params) async {
     final isAuthenticated = params.email == 'test@example.com' &&
         params.password == 'password12345';
-    return isAuthenticated ? const Right('token') : Left(SignInFailure());
+    return isAuthenticated ? const Right('token') : Left(AccountNotFound());
   }
 
   @override
