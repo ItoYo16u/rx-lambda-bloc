@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:functional_rx_bloc/modules/middleware/validation/validator/monadic_validation.dart';
+import 'package:functional_rx_bloc/modules/middleware/validation/validator/validation.dart';
 
 class Password {
   Password._internal(this._value);

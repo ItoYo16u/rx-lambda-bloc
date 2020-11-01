@@ -10,7 +10,7 @@ final RegExp _urlRegExp = RegExp(ValidationConstants.urlRegExp);
 final RegExp _internationalPhoneNumber =
     RegExp(ValidationConstants.internationalPhoneNumberRegExp);
 
-extension MonadicValidationString on String {
+extension ValidationString on String {
   Either<FormatException, String> _toValidatable() => Right(this);
 
   Either<FormatException, String> isPassword() => _toValidatable()

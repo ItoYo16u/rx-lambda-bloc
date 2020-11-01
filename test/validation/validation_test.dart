@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:functional_rx_bloc/modules/middleware/validation/validator/monadic_validation.dart';
+import 'package:functional_rx_bloc/modules/middleware/validation/validator/validation.dart';
 import 'package:functional_rx_bloc/modules/middleware/validation/validator/validation_constants.dart';
 
 void main() {
