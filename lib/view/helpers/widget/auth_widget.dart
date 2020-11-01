@@ -14,17 +14,13 @@ class AuthWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // try auto login;
-    return BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
-      if (state is UnAuthorized) {
+    return BlocBuilder<AuthBloc, AuthState>(
+      buildWhen: (before,after)=>before != after,
+        builder: (context, state) {
+      if (state is NotAuthenticated) {
         return redirect(context: context, message: state.message);
-      } else if (state is Pending) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        ); // show loading screen.
-      } else if (state is Authorized) {
+      } else if (state is Authenticated) {
         return privateApp;
-      } else if (state is Error) {
-        return redirect(context: context, message: state.message);
       } else {
         return redirect(context: context, message: 'something went wrong');
       }

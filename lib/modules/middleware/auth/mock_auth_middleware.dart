@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/auth_error.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
-import 'package:functional_rx_bloc/modules/middleware/auth/protocol/auth_params.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_auth_params.dart';
 import 'package:functional_rx_bloc/modules/middleware/common/error/failures.dart';
 
 class MockAuthMiddleware implements AuthMiddleware {

@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
-import 'package:functional_rx_bloc/modules/middleware/auth/protocol/auth_event.dart';
-import 'package:functional_rx_bloc/modules/middleware/auth/protocol/auth_state.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_auth_state.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_authentication_event.dart';
 import 'package:functional_rx_bloc/view/bloc/auth/auth_bloc.dart';
+import 'package:functional_rx_bloc/view/bloc/auth/try_auth_bloc.dart';
 import 'package:functional_rx_bloc/injection_container.dart' as di;
 
 class Entry extends StatefulWidget {
@@ -43,11 +44,12 @@ class _EntryState extends State<Entry> {
             if (snapshot.connectionState == ConnectionState.done) {
               return MultiBlocProvider(
                 providers: [
+                  BlocProvider(create: (context)=>AuthBloc()),
                   // register BloCs here.
                   BlocProvider(
-                      create: (context) => AuthBloc(UnAuthorized(),
+                      create: (context) => TryAuthBloc(Ready(),
                           middleware: di.sl.get<AuthMiddleware>())
-                        ..add(SignInWithToken())),
+                        ),
                   // BlocProvider(create: (ctx)=> ArticleBloc(Empty(),GetIt<usecase>())..add(Load()))
                   // articleBlocのstateにあるarticleはlike,dislike,scrappedに関する情報を持っている
                 ],

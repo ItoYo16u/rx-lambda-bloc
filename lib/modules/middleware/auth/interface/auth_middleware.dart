@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:functional_rx_bloc/modules/middleware/auth/protocol/auth_params.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_auth_params.dart';
 import 'package:functional_rx_bloc/modules/middleware/common/error/failures.dart';
 /// auth middlewareが返すのはsignIn/up/out -> InternalServerError, signIn-> UserNotFoundError,signUp -> UserAlreadyExistErrorなど
 /// paramsの生成時に失敗しうるようにする

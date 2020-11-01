@@ -13,8 +13,8 @@ class HomeScreen extends StatelessWidget {
         children: [
           RaisedButton(
               child: Text(AppLocalizations.of(context).labelSignOut),
-              onPressed: () =>
-                  Provider.of<AuthBloc>(context, listen: false).add(SignOut())),
+              onPressed: () => Provider.of<AuthBloc>(context, listen: false)
+                  .add(const UpdateToBeUnAuthenticated())),
         ],
       ));
 }

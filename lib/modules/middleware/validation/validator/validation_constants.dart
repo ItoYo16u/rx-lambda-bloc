@@ -13,6 +13,7 @@ class ValidationConstants{
   static const String mustNotBeEmpty = '最低一文字以上入力してください';
   static const String mustBeNumber = '数字を入力してください';
   static const String invalidUrlFormat = '正しいURLを入力してください';
+  static const String invalidPasswordFormat = 'パスワードのフォーマットが不正です';
   static const String passwordLackLetters = 'パスワードには大文字・小文字・数字を１文字以上含んでください';
 
 
