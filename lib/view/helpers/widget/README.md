@@ -1,0 +1,2 @@
+# about
+middleware層の状態管理や処理の実行は基本的にこのhelpers/widget 以下のウィジェットで行う.
