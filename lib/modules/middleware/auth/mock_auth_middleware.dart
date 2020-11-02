@@ -21,15 +21,18 @@ class MockAuthMiddleware implements AuthMiddleware {
   }
 
   @override
-  // ignore: missing_return
   Future<Either<Failure, Unit>> signOut(SignOutParams params) async {
     await Future<void>.delayed(const Duration(milliseconds: 500));
     return const Right(unit);
   }
 
   @override
-  Future<Either<Failure, String>> signUp(SignUpParams params) {
-    // TODO: implement signUp
-    throw UnimplementedError();
+  Future<Either<Failure, String>> signUp(SignUpParams params) async {
+    return const Right('token');
+  }
+
+  @override
+  Future<Either<Failure, String>> signInWithToken() async {
+    return const Right('token');
   }
 }

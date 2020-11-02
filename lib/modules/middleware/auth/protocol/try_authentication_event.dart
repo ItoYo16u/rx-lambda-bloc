@@ -6,7 +6,6 @@ import 'package:functional_rx_bloc/modules/middleware/auth/value_object/email.da
 import 'package:functional_rx_bloc/modules/middleware/auth/value_object/password.dart';
 import 'package:functional_rx_bloc/modules/middleware/common/error/failures.dart';
 
-
 @immutable
 abstract class TryAuthEvent extends Equatable {
   Either<Failure, TryAuthParams> validate();
@@ -37,7 +36,8 @@ class SignIn extends TryAuthEvent {
   @override
   Either<Failure, SignInParams> validate() {
     try {
-      return Right(SignInParams(email: Email(email), password: Password(password)));
+      return Right(
+          SignInParams(email: Email(email), password: Password(password)));
     } on FormatException catch (e) {
       return Left(InvalidInputFailure(message: e.message));
     }
@@ -58,8 +58,10 @@ class SignUp extends TryAuthEvent {
   @override
   Either<Failure, SignUpParams> validate() {
     try {
-      final result =
-      SignUpParams(email: email, password: password, username: username);
+      final result = SignUpParams(
+          email: Email(email),
+          password: Password(password),
+          username: username);
       return Right(result);
     } on FormatException {
       return Left(InvalidInputFailure());

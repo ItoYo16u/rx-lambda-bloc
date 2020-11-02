@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
 
 /// 認証状態
 
@@ -9,9 +11,14 @@ abstract class ChangeAuthStateEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
-
+/// 初期化時にログイン状態を復元するための処理.
+class TryInitializeWithMiddleware extends ChangeAuthStateEvent {
+  const TryInitializeWithMiddleware({@required this.middleware}):super._();
+  final AuthMiddleware middleware;
+}
 class UpdateToBeAuthenticated extends ChangeAuthStateEvent {
-  const UpdateToBeAuthenticated({this.message}) : super._();
+  const UpdateToBeAuthenticated(this.token,{this.message}) : super._();
+  final String token;
   final String message;
 }
 class UpdateToBeUnAuthenticated extends ChangeAuthStateEvent {

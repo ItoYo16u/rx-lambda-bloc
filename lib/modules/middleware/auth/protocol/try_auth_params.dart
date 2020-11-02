@@ -5,15 +5,10 @@ import 'package:functional_rx_bloc/modules/middleware/auth/value_object/password
 abstract class TryAuthParams {}
 class SignUpParams extends TryAuthParams{
   SignUpParams(
-      {@required this.email, @required this.password, @required this.username}){
-    if(password.length < 5){
-      // !(email.validate().isEmail() && password.validate().isPassword() && username.validate().isUserName())
-      throw const FormatException('password is too short!');
-    }
-  }
+      {@required this.email, @required this.password, @required this.username});
 
-  final String email;
-  final String password;
+  final Email email;
+  final Password password;
   final String username;
 }
 class TokenSignInParams extends TryAuthParams {}

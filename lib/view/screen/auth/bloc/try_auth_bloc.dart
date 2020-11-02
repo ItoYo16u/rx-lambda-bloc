@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/auth_error.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
@@ -6,10 +7,18 @@ import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_auth_sta
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_authentication_event.dart';
 import 'package:functional_rx_bloc/modules/middleware/common/error/failures.dart';
 
+///新規会員登録・ログイン・自動ログインなどを行う
+///
+///イベントを受信すると処理を行い
+///- Ready
+///- Pending
+///- Success || Error
+///
+///の状態にmessageをつめて通知する.
 class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
   final AuthMiddleware _authMiddleware;
 
-  TryAuthBloc(TryAuthState initialState, {AuthMiddleware middleware})
+  TryAuthBloc(TryAuthState initialState, {@required AuthMiddleware middleware})
       : _authMiddleware = middleware,
         super(initialState);
 
@@ -51,10 +60,8 @@ class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
         yield Error(message: '');
       }, (params) async* {
         yield Pending();
-        await Future<void>.delayed(const Duration(seconds: 1));
-        //final failureOrToken =  _authMiddleware.tryAutoSignIn(); => repo.retrieveToken.then signInWithToken(token)
-        // unauthorized or authorized or err
-        yield Ready(message: 'token expired');
+        final failureOrToken = await _authMiddleware.signInWithToken();
+        yield* _eitherSuccessOrError(failureOrToken);
       });
     }
   }

@@ -2,16 +2,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
-import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_auth_state.dart';
-import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_authentication_event.dart';
-import 'package:functional_rx_bloc/view/bloc/auth/auth_bloc.dart';
-import 'package:functional_rx_bloc/view/bloc/auth/try_auth_bloc.dart';
 import 'package:functional_rx_bloc/injection_container.dart' as di;
+import 'package:functional_rx_bloc/view/helpers/widget/auth/auth_bloc.dart';
+import 'package:functional_rx_bloc/view/helpers/widget/auth/auth_event.dart';
 
 class Entry extends StatefulWidget {
   const Entry({this.builder, this.splashScreen}) : super();
   final Widget Function(BuildContext context) builder;
+  ///NOTE splash screen must have Scaffold.
   final Widget splashScreen;
 
   @override
@@ -24,7 +22,11 @@ class _EntryState extends State<Entry> {
   @override
   void initState() {
     super.initState();
-    _init = di.init().then((_) => _/*もし時間のかかる初期化のmiddlewareがあるなかここでdi.sl.initMiddleware.init()を呼び出す*/);
+
+    /// 認証状態に依存しない初期化処理.
+    _init = di.init().then((b) =>
+        Future<bool>.delayed(const Duration(seconds: 1)).then((__) => b));
+    /*もし時間のかかる初期化のmiddlewareがあるなかここでdi.sl.initMiddleware.init()を呼び出す*/
   }
 
   @override
@@ -37,35 +39,31 @@ class _EntryState extends State<Entry> {
       // register localization here.
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(
-        body: FutureBuilder<bool>(
-          future: _init,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return MultiBlocProvider(
-                providers: [
-                  BlocProvider(create: (context)=>AuthBloc()),
-                  // register BloCs here.
-                  BlocProvider(
-                      create: (context) => TryAuthBloc(Ready(),
-                          middleware: di.sl.get<AuthMiddleware>())
-                        ),
-                  // BlocProvider(create: (ctx)=> ArticleBloc(Empty(),GetIt<usecase>())..add(Load()))
-                  // articleBlocのstateにあるarticleはlike,dislike,scrappedに関する情報を持っている
-                ],
-                child: Builder(
-                  builder: widget.builder,
-                ),
-              );
-            } else {
-              // show splash screen.
-              return widget.splashScreen ??
-                  const Center(
+      home: FutureBuilder<bool>(
+        future: _init,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                    create: (context) => AuthBloc()
+                      ..add(TryInitializeWithMiddleware(
+                          middleware: di.sl.get()))),
+              ],
+              child: Builder(
+                builder: widget.builder,
+              ),
+            );
+          } else {
+            // show splash screen.
+            return widget.splashScreen ??
+                const Scaffold(
+                  body: Center(
                     child: CircularProgressIndicator(),
-                  );
-            }
-          },
-        ),
+                  ),
+                );
+          }
+        },
       ),
     );
   }

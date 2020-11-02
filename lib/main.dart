@@ -1,9 +1,9 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:functional_rx_bloc/view/helpers/widget/auth_widget.dart';
+import 'package:functional_rx_bloc/view/helpers/widget/auth/auth_widget.dart';
 import 'package:functional_rx_bloc/view/helpers/widget/entry.dart';
 import 'package:functional_rx_bloc/view/screen/auth/auth_screen.dart';
-import 'package:functional_rx_bloc/view/screen/auth/auth_screen_builder.dart';
+import 'package:functional_rx_bloc/view/screen/auth/auth_app.dart';
 import 'package:functional_rx_bloc/view/screen/home/home_screen.dart';
 
 void main() {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           // redirect: => AuthScreen
-          redirect: ({context, message}) => AuthScreenBuilder(
+          redirect: (context, {message}) => AuthApp(
               builder: (context, {String message}) => AuthScreen(
                     message: message,
                   ))),

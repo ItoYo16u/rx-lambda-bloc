@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:functional_rx_bloc/modules/middleware/validation/validator/validation.dart';
 import 'package:functional_rx_bloc/modules/middleware/validation/validator/validation_constants.dart';
-
+/// passwordのバリューオブジェクト. 一般的なpasswordのルール以外の特別なドメインルールが存在するならここでバリデーションする.
 class Password extends Equatable{
   factory Password(String value) => value.isPassword() is Right
       ? Password._internal(value)
