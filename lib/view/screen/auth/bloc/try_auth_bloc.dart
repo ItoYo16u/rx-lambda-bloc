@@ -60,7 +60,7 @@ class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
         yield Error(message: '');
       }, (params) async* {
         yield Pending();
-        final failureOrToken = await _authMiddleware.signInWithToken();
+        final failureOrToken = await _authMiddleware.tryAutoSignIn();
         yield* _eitherSuccessOrError(failureOrToken);
       });
     }

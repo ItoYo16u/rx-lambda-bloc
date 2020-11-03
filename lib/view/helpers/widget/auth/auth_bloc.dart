@@ -12,7 +12,7 @@ class AuthBloc extends Bloc<ChangeAuthStateEvent,AuthState> {
     }else if (event is UpdateToBeUnAuthenticated ){
       yield const NotAuthenticated();
     } else if(event is TryInitializeWithMiddleware) {
-      final res = await event.middleware.signInWithToken();
+      final res = await event.middleware.tryAutoSignIn();
       yield* res.fold((failure)async* {
         yield const NotAuthenticated();
       }, (token) async* {
