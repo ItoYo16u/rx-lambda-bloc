@@ -1,5 +1,6 @@
 import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/mock_auth_middleware.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/repository/mock_auth_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,7 +11,8 @@ Future<bool> init() async {
   // ローカルストレージの初期化
   final sharedPreferences = await SharedPreferences.getInstance();
   // middlewareの初期化
-  final mockMiddleware = MockAuthMiddleware();
+  final authRepository = MockAuthRepository();
+  final mockMiddleware = MockAuthMiddleware(authRepository: authRepository);
   sl.registerSingleton<AuthMiddleware>(mockMiddleware);
   // repository,usecaseの初期化
   // initializerMiddlewareの初期化

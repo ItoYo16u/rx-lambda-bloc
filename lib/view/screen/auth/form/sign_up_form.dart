@@ -8,10 +8,9 @@ import 'package:functional_rx_bloc/view/screen/auth/auth_viewmodel.dart';
 import 'package:functional_rx_bloc/view/screen/auth/bloc/try_auth_bloc.dart';
 import 'package:provider/provider.dart';
 
-class AuthScreen extends StatelessWidget {
-  const AuthScreen({this.message});
+class SignUpForm extends StatelessWidget {
+  const SignUpForm();
 
-  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,6 @@ class AuthScreen extends StatelessWidget {
       create: (context) => AuthViewModel(),
       builder: (context, child) => FormWrapper(
         children: [
-          if (message != null) ...[Text(message)],
           Consumer<AuthViewModel>(
             builder: (_, vm, __) => EmailField(
                 errorText: vm.emailErrorText, controller: vm.emailController),
@@ -28,23 +26,31 @@ class AuthScreen extends StatelessWidget {
             builder: (_, vm, __) => PasswordField(
                 errorText: vm.passwordErrorText,
                 controller: vm.passwordController,
-                formKey: Key('password')),
+                formKey: const Key('password')),
           ),
-          Consumer<AuthViewModel>(
-              key: GlobalKey(),
-              builder: (_, vm, __) => RaisedButton(
-                  key: GlobalKey(),
-                  child: Text(
-                    AppLocalizations.of(context).labelSignIn,
-                    key: GlobalKey(),
-                  ),
-                  // validateState.canSubmit ? : null;
-                  onPressed: vm.canSubmit()
-                      ? () => Provider.of<TryAuthBloc>(context, listen: false)
-                          .add(SignIn(email: vm.email, password: vm.password))
-                      : null)),
+          _SignUpButton()
         ],
       ),
     );
   }
+}
+
+class _SignUpButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Consumer<AuthViewModel>(
+      key: GlobalKey(),
+      builder: (_, vm, __) => RaisedButton(
+          key: GlobalKey(),
+          child: Text(
+            AppLocalizations.of(context).labelSignUp,
+            key: GlobalKey(),
+          ),
+          // validateState.canSubmit ? : null;
+          onPressed: vm.canSubmit()
+              ? () => Provider.of<TryAuthBloc>(context, listen: false).add(
+                  SignUp(
+                      email: vm.email,
+                      password: vm.password,
+                      username: 'test taro'))
+              : null));
 }

@@ -7,6 +7,7 @@ import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middle
 import 'package:functional_rx_bloc/modules/middleware/initialize/initialize_middleware.dart';
 import 'package:functional_rx_bloc/view/helpers/widget/auth/auth_bloc.dart';
 import 'package:functional_rx_bloc/view/helpers/widget/auth/auth_event.dart';
+import 'package:provider/provider.dart';
 
 class Entry extends StatefulWidget {
   const Entry({this.builder, this.splashScreen}) : super();
@@ -52,7 +53,7 @@ class _EntryState extends State<Entry> {
         future: _init,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return MultiBlocProvider(
+            return MultiProvider(
               providers: [
                 BlocProvider(
                     create: (context) => AuthBloc()

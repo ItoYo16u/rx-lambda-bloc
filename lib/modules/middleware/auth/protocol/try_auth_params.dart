@@ -11,6 +11,7 @@ class SignUpParams extends TryAuthParams{
   final Password password;
   final String username;
 }
+class Void extends TryAuthParams{}
 class TokenSignInParams extends TryAuthParams {}
 class SignInParams extends TryAuthParams {
   SignInParams(

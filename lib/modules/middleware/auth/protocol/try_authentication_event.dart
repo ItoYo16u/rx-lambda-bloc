@@ -14,6 +14,12 @@ abstract class TryAuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class Retry extends TryAuthEvent {
+  @override
+  Either<Failure, TryAuthParams> validate()=>Right(Void());
+
+}
+
 class SignInWithToken extends TryAuthEvent {
   @override
   List<Object> get props => [];

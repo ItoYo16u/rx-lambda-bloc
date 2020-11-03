@@ -63,6 +63,8 @@ class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
         final failureOrToken = await _authMiddleware.tryAutoSignIn();
         yield* _eitherSuccessOrError(failureOrToken);
       });
+    } else if (event is Retry){
+      yield Ready();
     }
   }
 
