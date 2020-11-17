@@ -8,15 +8,15 @@ class AuthBloc extends Bloc<ChangeAuthStateEvent,AuthState> {
   @override
   Stream<AuthState> mapEventToState(ChangeAuthStateEvent event) async* {
     if(event is UpdateToBeAuthenticated){
-      yield Authenticated(token: event.token);
+      yield Authenticated(user: event.user);
     }else if (event is UpdateToBeUnAuthenticated ){
       yield const NotAuthenticated();
     } else if(event is TryInitializeWithMiddleware) {
       final res = await event.middleware.tryAutoSignIn();
       yield* res.fold((failure)async* {
         yield const NotAuthenticated();
-      }, (token) async* {
-       yield Authenticated(token: token);
+      }, (user) async* {
+       yield Authenticated(user: user);
       });
     } else {
       yield const NotAuthenticated();

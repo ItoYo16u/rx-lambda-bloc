@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/model/auth_model.dart';
 import 'package:meta/meta.dart';
 /// 認証状態を表現するevent オブジェクト
 ///
@@ -22,12 +23,12 @@ class Ready extends TryAuthState {
 class Pending extends TryAuthState {}
 
 class Success extends TryAuthState {
-  final String token;
+  final User user;
 
-  Success({@required this.token});
+  Success({@required this.user});
 
   @override
-  List<Object> get props => [token];
+  List<Object> get props => [user];
 }
 
 class Error extends TryAuthState {

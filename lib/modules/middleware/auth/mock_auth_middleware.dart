@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/auth_error.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/model/auth_model.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_auth_params.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/repository/auth_repository.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/value_object/email.dart';
@@ -19,10 +20,10 @@ class MockAuthMiddleware implements AuthMiddleware {
   }
 
   @override
-  Future<Either<Failure, String>> signIn(SignInParams params) async {
+  Future<Either<Failure, User>> signIn(SignInParams params) async {
     final isAuthenticated = params.email == Email('test@example.com') &&
         params.password == Password('Password12345');
-    return isAuthenticated ? const Right('token') : Left(AccountNotFound());
+    return isAuthenticated ? Right(User()) : Left(AccountNotFound());
   }
 
   @override
@@ -32,17 +33,17 @@ class MockAuthMiddleware implements AuthMiddleware {
   }
 
   @override
-  Future<Either<Failure, String>> signUp(SignUpParams params) async {
-    return const Right('token');
+  Future<Either<Failure, User>> signUp(SignUpParams params) async {
+    return Right(User());
   }
 
   @override
-  Future<Either<Failure, String>> tryAutoSignIn() async {
+  Future<Either<Failure, User>> tryAutoSignIn() async {
     final _tokenE = await authRepository.fetchAuthToken();
     //   ConnectionFailure,ServerFailure,
     //  TokenNotFound,InvalidToken,OtherFailure,
     final _userEitherF = _tokenE.fold(
-        (l) => Future.value(Left<Failure, String>(l)),
+        (l) => Future.value(Left<Failure, User>(l)),
         authRepository.signInWithToken);
     // ConnectionFailure,ServerFailure,
     // Rejected,OtherFailure

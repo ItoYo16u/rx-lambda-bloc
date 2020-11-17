@@ -2,6 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:functional_rx_bloc/modules/middleware/validation/validator/validation_constants.dart';
 
+typedef X = List<String> Function(List<FormatException>) Function(
+    List<FormatException>);
+
 final RegExp _emailRegExp = RegExp(ValidationConstants.emailRegExp);
 final RegExp _capitalRegExp = RegExp('[A-Z]');
 final RegExp _lowerRegExp = RegExp('[a-z]');

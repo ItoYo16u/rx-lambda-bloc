@@ -31,7 +31,7 @@ class AuthScreenBuilder extends StatelessWidget {
                       Provider.of<TryAuthBloc>(context,listen: false).add(Retry()));
           } else if (state is Success) {
             Provider.of<AuthBloc>(context, listen: false)
-                .add(UpdateToBeAuthenticated(state.token));
+                .add(UpdateToBeAuthenticated(state.user));
           } else if (state is Ready) {
             Scaffold.of(context).hideCurrentSnackBar();
           }

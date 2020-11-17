@@ -8,7 +8,6 @@ import 'package:functional_rx_bloc/injection_container.dart' as di;
 import 'package:functional_rx_bloc/view/helpers/constants/route_path.dart';
 import 'package:functional_rx_bloc/view/screen/auth/bloc/try_auth_bloc.dart';
 import 'package:functional_rx_bloc/view/screen/auth/route/auth_route.dart';
-import 'package:functional_rx_bloc/view/screen/auth/screen/sign_in_screen.dart';
 
 // NOTE: auth screen builderをmaterial appにして、navigatorの範囲をその内部で制限すればいいかも.
 // auth screen builder(initialRoute:AuthPage.signIn)みたいに.

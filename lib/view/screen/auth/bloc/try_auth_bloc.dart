@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/auth_error.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middleware.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/model/auth_model.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_auth_state.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_authentication_event.dart';
 import 'package:functional_rx_bloc/modules/middleware/common/error/failures.dart';
@@ -33,8 +34,8 @@ class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
         },
         (params) async* {
           yield Pending();
-          final failureOrToken = await _authMiddleware.signUp(params);
-          yield* _eitherSuccessOrError(failureOrToken);
+          final failureOrUser = await _authMiddleware.signUp(params);
+          yield* _eitherSuccessOrError(failureOrUser);
         },
       );
     } else if (event is SignIn) {
@@ -60,8 +61,8 @@ class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
         yield Error(message: '');
       }, (params) async* {
         yield Pending();
-        final failureOrToken = await _authMiddleware.tryAutoSignIn();
-        yield* _eitherSuccessOrError(failureOrToken);
+        final failureOrUser = await _authMiddleware.tryAutoSignIn();
+        yield* _eitherSuccessOrError(failureOrUser);
       });
     } else if (event is Retry){
       yield Ready();
@@ -69,11 +70,11 @@ class TryAuthBloc extends Bloc<TryAuthEvent, TryAuthState> {
   }
 
   Stream<TryAuthState> _eitherSuccessOrError(
-    Either<Failure, String> failureOrToken,
+    Either<Failure, User> failureOrUser,
   ) async* {
-    yield failureOrToken.fold(
+    yield failureOrUser.fold(
       (failure) => Error(message: _mapFailureToMessage(failure)),
-      (token) => Success(token: token),
+      (user) => Success(user: user),
     );
   }
 

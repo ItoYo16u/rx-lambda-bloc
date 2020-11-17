@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:functional_rx_bloc/modules/middleware/auth/model/auth_model.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_auth_params.dart';
 import 'package:functional_rx_bloc/modules/middleware/auth/repository/auth_repository.dart';
 import 'package:functional_rx_bloc/modules/middleware/common/error/failures.dart';
@@ -16,14 +17,14 @@ class MockAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, String>> signIn(SignInParams params) {
+  Future<Either<Failure, User>> signIn(SignInParams params) {
     // TODO: implement signIn
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, String>> signInWithToken(String token) async{
-    return const Right('user');
+  Future<Either<Failure, User>> signInWithToken(String token) async{
+    return Right(User());
   }
 
   @override
@@ -33,7 +34,7 @@ class MockAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, String>> signUp(SignUpParams params) {
+  Future<Either<Failure, User>> signUp(SignUpParams params) {
     // TODO: implement signUp
     throw UnimplementedError();
   }
