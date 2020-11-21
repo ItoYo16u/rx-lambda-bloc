@@ -6,6 +6,7 @@ import 'package:functional_rx_bloc/modules/middleware/auth/interface/auth_middle
 import 'package:functional_rx_bloc/modules/middleware/auth/protocol/try_auth_state.dart';
 import 'package:functional_rx_bloc/injection_container.dart' as di;
 import 'package:functional_rx_bloc/view/helpers/constants/route_path.dart';
+import 'package:functional_rx_bloc/view/helpers/theme/light_theme.dart';
 import 'package:functional_rx_bloc/view/screen/auth/bloc/try_auth_bloc.dart';
 import 'package:functional_rx_bloc/view/screen/auth/route/auth_route.dart';
 
@@ -17,7 +18,8 @@ class AuthApp extends StatelessWidget {
     return BlocProvider(
         create: (context) =>
             TryAuthBloc(Ready(), middleware: di.sl.get<AuthMiddleware>()),
-        child: const MaterialApp(
+        child: MaterialApp(
+          theme: lightTheme,
           // 初回起動時はroutePath.signUpを、初回起動でないなら、signInをinitialRouteにする、
           initialRoute: RoutePath.signIn,
           onGenerateRoute: AuthRoute.generateRoute,

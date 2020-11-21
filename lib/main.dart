@@ -1,5 +1,6 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:functional_rx_bloc/view/helpers/theme/light_theme.dart';
 import 'package:functional_rx_bloc/view/helpers/widget/auth/auth_widget.dart';
 import 'package:functional_rx_bloc/view/helpers/widget/entry.dart';
 import 'package:functional_rx_bloc/view/screen/auth/auth_app.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
     return Entry(
       builder: (_) => AuthWidget(
           privateApp: MaterialApp(
+            theme: lightTheme,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(

@@ -12,9 +12,37 @@
   "@appLicense": {
     "description": "app license"
   },
+  "labelSex": "性別",
+  "@labelSex": {
+    "description": "label for sex"
+  },
+  "labelMan": "男性",
+  "@labelMan": {
+    "description": "label for man"
+  },
+  "labelWoMan": "女性",
+  "@labelWoMan": {
+    "description": "label for woman"
+  },
+  "labelBirthDay": "生年月日",
+  "@labelBirthDay": {
+    "description": "label for birth day"
+  },
+  "labelHistory": "履歴",
+  "@labelHistory": {
+    "description": "label for history"
+  },
   "labelOk": "OK!",
   "@labelOk": {
     "description": "label for Ok buttons and actions"
+  },
+  "labelYes": "はい",
+  "@labelYes": {
+    "description": "label for yes buttons and actions"
+  },
+  "labelNo": "いいえ",
+  "@labelNo": {
+    "description": "label for no buttons and actions"
   },
   "labelSearch": "検索する",
   "@labelSearch": {
@@ -223,6 +251,26 @@
   "labelAddress": "住所",
   "@labelAddress": {
     "description": "label for address"
+  },
+  "labelPostalCode": "郵便番号",
+  "@labelPostalCode": {
+    "description": "label for address"
+  },
+  "labelPrefecture": "都道府県",
+  "@labelPrefecture": {
+    "description": "label for prefecture (in japan)"
+  },
+  "labelCity": "市区町村",
+  "@labelCity": {
+    "description": "label for City (in japan)"
+  },
+  "labelArea": "丁目・番地",
+  "@labelArea": {
+    "description": "label for Area (in japan)"
+  },
+  "labelResidence": "建物名・部屋番号",
+  "@labelResidence": {
+    "description": "label for residence (in japan)"
   },
   "labelPhoneNumber": "電話番号",
   "@labelPhoneNumber": {

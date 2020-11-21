@@ -4,24 +4,20 @@ class User {
   User({
     this.id,
     this.authenticateType,
-    this.firstName,
-    this.lastName,
     this.accessToken,
+    this.profile,
   });
 
 
   User.fromJson(Map<String, dynamic> json)
       : id = json['id'] as String,
-        firstName = json['firstName'] as String,
-        lastName = json['lastName'] as String,
+        profile = Profile.fromJson(json['profile'] as Map<String,dynamic> ),
         authenticateType = json['authenticateType'] as String,
         accessToken = json['accessToken'] as AccessToken;
 
-  String get fullName => '$lastName $firstName';
 
   final String id;
+  final Profile profile;
   final String authenticateType;
-  final String firstName;
-  final String lastName;
   final AccessToken accessToken;
 }

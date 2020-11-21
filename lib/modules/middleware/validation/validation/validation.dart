@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 part 'validation_result.dart';
+
 part 'validation_constants.dart';
 
 final RegExp _emailRegExp = RegExp(ValidationConstants.emailRegExp);
@@ -10,6 +11,8 @@ final RegExp _capitalRegExp = RegExp('[A-Z]');
 final RegExp _lowerRegExp = RegExp('[a-z]');
 final RegExp _numberRegExp = RegExp('[0-9]');
 final RegExp _urlRegExp = RegExp(ValidationConstants.urlRegExp);
+final RegExp _prefectureSuffixRegEx =
+    RegExp(ValidationConstants.prefectureSuffixRegEx);
 final RegExp _internationalPhoneNumber =
     RegExp(ValidationConstants.internationalPhoneNumberRegExp);
 
@@ -191,8 +194,12 @@ extension ValidationString on String {
       ._matchesRegExp(_emailRegExp,
           errorMessage: ValidationConstants.emailInvalidFormat);
 
-  ValidationResult isKeyword() =>
-      _validate()._isNonEmpty(errorMessage: ValidationConstants.keywordEmpty);
+  ValidationResult isPostalCode() => _validate()
+      ._isNumbers(errorMessage: ValidationConstants.mustBeNumbers)
+      ._isLength(7, errorMessageBuilder: ValidationConstants.mastBeEq);
+
+  ValidationResult isPrefecture() =>
+      _validate()._matchesRegExp(_prefectureSuffixRegEx);
 
   ValidationResult isPhoneNumber() => _validate()
       ._isNonEmpty(errorMessage: ValidationConstants.phoneNumberEmpty)
