@@ -1,3 +1,5 @@
+2021/02 追記: Either, Option を使うにも外部ライブラリに依存しないといけないのであまり望ましくない。素直にDartのお気持ちに従ったほうがいい。
+
 # functional_rx_bloc
 
 functional reactive bloc pattern with rxdart,dartz and bloc.
